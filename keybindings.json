@@ -1,0 +1,147 @@
+[
+  {
+    // toggle the visibility of the sidebar (Sidebar) of the workspace.
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+e"
+  },
+  // focus on the file explorer and select the current file in it.
+  {
+    "command": "workbench.files.action.focusFilesExplorer",
+    "key": "ctrl+e",
+    "when": "editorTextFocus"
+  },
+  // When the focus is on File Explorer
+  // press "a" to create a new file
+  {
+    "command": "explorer.newFile",
+    "key": "a",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    // press "r" to rename the selected file
+    "command": "renameFile",
+    "key": "r",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // press "c" to copy the selected file
+  {
+    "command": "filesExplorer.copy",
+    "key": "c",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // press "p" for the copied or cut file
+  {
+    "command": "filesExplorer.paste",
+    "key": "p",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // press "d" to delete the selected file
+  {
+    "command": "deleteFile",
+    "key": "d",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // adds the current selection to the following match (Concurrent Selection)
+  {
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "key": "ctrl+n",
+    "when": "editorFocus"
+  },
+  {
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "key": "ctrl+n",
+    "when": "editorFocus"
+  },
+  // toggle Zen Mode
+  {
+    "command": "workbench.action.toggleZenMode",
+    "key": "ctrl+z"
+  },
+  {
+    "command": "-workbench.action.toggleZenMode",
+    "key": "ctrl+k z"
+  },
+  // select all content from the editor.
+  {
+    "command": "editor.action.selectAll",
+    "key": "ctrl+a"
+  },
+  // navigation in the quick file picker. Ctrl + j (bottom) and Ctrl + k (top)
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenNavigateNextInFilePicker"
+  },
+  // select the following suggestion
+  {
+    "key": "tab",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  // select the previous suggestion from the list
+  {
+    "key": "shift+tab",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+
+  // Terminal options
+  // switch to the next active terminal.
+  {
+    "key": "shift+a",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  // switch to the next previous terminal
+  {
+    "key": "shift+b",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+  // toggle activity pane visibility
+  {
+    "key": "shift+j",
+    "command": "workbench.action.togglePanel"
+  },
+  // open a new terminal
+  {
+    "key": "shift+n",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus"
+  },
+  // close the current terminal
+  {
+    "key": "shift+c",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  // maximize current editor
+  {
+    "key": "ctrl+enter",
+    "command": "workbench.action.toggleEditorWidths",
+    "when": "editorTextFocus && ((vim.active && vim.mode != 'Insert') || neovim.mode != insert)"
+  },
+  // equalize windows
+  {
+    "key": "ctrl+alt+e",
+    "command": "workbench.action.evenEditorWidths"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "-workbench.action.files.openFolderViaWorkspace",
+    "when": "!openFolderWorkspaceSupport && workbenchState == 'workspace'"
+  },
+  {
+    "key": "ctrl+o ctrl+f",
+    "command": "workbench.action.files.openFolder",
+    "when": "openFolderWorkspaceSupport"
+  },
+  {
+    "key": "ctrl+k ctrl+o",
+    "command": "-workbench.action.files.openFolder",
+    "when": "openFolderWorkspaceSupport"
+  }
+]
