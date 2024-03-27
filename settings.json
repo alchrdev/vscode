@@ -8,6 +8,20 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
   "vim.foldfix": true,
   "vim.easymotion": true,
   "vim.incsearch": true,
@@ -15,27 +29,9 @@
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.normalModeKeyBindings": [
-    // [S]elect a block of text in curly braces and copy it to the clipboard
-    {
-      "before": ["Y", "Y"],
-      "after": ["v", "a", "{", "y", "}"]
-    },
-    // [S]elect all and copy
-    {
-      "before": ["<leader>", "a"],
-      "commands": [
-        "editor.action.selectAll",
-        "editor.action.clipboardCopyAction"
-      ]
-    },
-    // [S]elect all and delete
-    {
-      "before": ["<leader>", "d"],
-      "commands": ["editor.action.selectAll", "deleteLeft"]
-    },
     // [G]o to link / file
     {
-      "before": ["<leader>", "g", "f"],
+      "before": ["g", "f"],
       "commands": ["editor.action.openLink"]
     },
     // [F]ormat document
@@ -62,9 +58,8 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     // [S]plit the window vertically and horizontally
-    { "before": ["leader", "|"], "commands": [":vsplit"] },
-    { "before": ["leader", "-"], "commands": [":split"] },
-
+    { "before": ["leader", "v"], "commands": [":vsplit"] },
+    { "before": ["leader", "h"], "commands": [":split"] },
     // [M]ove quickly between panel groups
     {
       "before": ["<C-h>"],
@@ -111,26 +106,16 @@
       "before": ["<C-Down>"],
       "commands": ["workbench.action.decreaseViewSize"]
     },
-    // [I]nsert empty lines
+    // [E]qualize windows
     {
-      "before": ["<A-O>"],
-      "commands": ["editor.action.insertLineBefore"]
-    },
-    {
-      "before": ["<A-o>"],
-      "commands": ["editor.action.insertLineAfter"]
-    },
-    // [M]oves the cursor to the beginning or end of the current line
-    {
-      "before": ["H"],
-      "after": ["0"]
-    },
-    {
-      "before": ["L"],
-      "after": ["$"]
+      "before": ["<leader>", "w", "e"],
+      "commands": ["workbench.action.evenEditorWidths"]
     },
     // [S]ave file
-    { "before": ["leader", "w"], "commands": ["workbench.action.files.save"] },
+    {
+      "before": ["leader", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
     // [C]lose  active editor
     {
       "before": ["leader", "q"],
@@ -148,25 +133,42 @@
     },
     // Diffuse search engine inspired by [Telescope](https://github.com/nvim-telescope/telescope.nvim)
     // [O]pen the quick file search feature
-    { "before": ["leader", "f"], "commands": ["workbench.action.quickOpen"] },
+    {
+      "before": ["leader", "s", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
     // [?] Find recently opened files
     {
-      "before": ["leader", "f", "r"],
+      "before": ["leader", "."],
       "commands": ["workbench.action.openRecent"]
     },
     // [S]earch by [G]rep
-    { "before": ["leader", "/"], "commands": ["workbench.action.findInFiles"] },
+    {
+      "before": ["leader", "s", "g"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+
     // [C]ommand History
     {
-      "before": ["<leader>", ":"],
+      "before": ["<leader>", ","],
       "commands": ["workbench.action.showCommands"]
     },
     // [S]witch Buffer
     {
-      "before": ["<leader>", ","],
+      "before": ["<leader>", "<leader>"],
       "commands": [
         "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
       ]
+    },
+    // [/] Fuzzily search in current buffer
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["actions.find"]
+    },
+    // [F]ind and [R]eplace
+    {
+      "before": ["<leader>", "/", "r"],
+      "commands": ["actions.find", "editor.action.startFindReplaceAction"]
     },
     // [T]oggle activity and status bar visibility
     {
@@ -184,7 +186,7 @@
     },
     // [C]lear search highlighting
     {
-      "before": ["<Esc>"],
+      "before": ["<leader>", "n", "o"],
       "commands": [":nohl"]
     },
     // [B]uffers
@@ -231,7 +233,7 @@
     },
     // [O]pen file explorer
     {
-      "before": ["<leader>", "e"],
+      "before": ["<leader>", "<Tab>"],
       "commands": [
         "workbench.view.explorer",
         "workbench.files.action.focusFilesExplorer"
@@ -274,10 +276,12 @@
         "workbench.action.terminal.focus"
       ]
     },
-    // [F]ind and [R]eplace
     {
-      "before": ["<leader>", "f", "w"],
-      "commands": ["actions.find", "editor.action.startFindReplaceAction"]
+      "before": ["<leader>", "n"],
+      "commands": [
+        "editor.action.addSelectionToNextFindMatch",
+        "extension.vim_gb"
+      ]
     }
   ],
   "vim.visualModeKeyBindings": [
@@ -333,7 +337,7 @@
   "editor.stickyScroll.enabled": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "editor.guides.indentation": false,
+  "editor.guides.indentation": true,
   "editor.linkedEditing": true,
   "editor.cursorBlinking": "solid",
   "editor.minimap.enabled": false,
@@ -343,18 +347,6 @@
   "workbench.editor.showTabs": "none",
   "window.titleBarStyle": "custom",
   "workbench.editor.labelFormat": "short",
-  "[json]": {},
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": {
-      "other": true,
-      "comments": true,
-      "strings": true
-    }
-  },
   "workbench.layoutControl.enabled": false,
   "window.restoreWindows": "none",
   "window.commandCenter": true,
@@ -691,7 +683,6 @@
           }
         },
         // markdown
-
         {
           "scope": [
             "heading.1.markdown entity.name",
@@ -751,6 +742,12 @@
             "string.other.link.title.markdown",
             "meta.link.inline.markdown"
           ],
+          "settings": {
+            "foreground": "#2ac3de"
+          }
+        },
+        {
+          "scope": ["string.other.link"],
           "settings": {
             "foreground": "#2ac3de"
           }
@@ -883,13 +880,13 @@
         },
         // lua
         {
-          "scope": ["variable.other.lua"],
+          "scope": ["source.lua"],
           "settings": {
             "foreground": "#73daca"
           }
         },
         {
-          "scope": ["variable.other.lua", "source.lua"],
+          "scope": ["variable.other.lua"],
           "settings": {
             "foreground": "#c0caf5"
           }
@@ -922,6 +919,18 @@
             "foreground": "#bb9af7"
           }
         },
+        {
+          "scope": "variable.parameter.function.lua",
+          "settings": {
+            "foreground": "#e0af68"
+          }
+        },
+        {
+          "scope": ["entity.name.function.lua"],
+          "settings": {
+            "foreground": "#73daca"
+          }
+        },
         // yaml
         {
           "scope": ["entity.name.tag.yaml"],
@@ -938,7 +947,7 @@
       ]
     }
   },
-  "workbench.colorTheme": "Tokyo Night",
   "editor.accessibilitySupport": "off",
-  "workbench.activityBar.location": "hidden"
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "Tokyo Night"
 }

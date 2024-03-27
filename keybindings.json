@@ -41,18 +41,7 @@
     "key": "d",
     "when": "filesExplorerFocus && !inputFocus"
   },
-  // adds the current selection to the following match (Concurrent Selection)
-  {
-    "command": "editor.action.addSelectionToNextFindMatch",
-    "key": "ctrl+n",
-    "when": "editorFocus"
-  },
-  {
-    "command": "editor.action.addSelectionToNextFindMatch",
-    "key": "ctrl+n",
-    "when": "editorFocus"
-  },
-  // toggle Zen Mode
+    // toggle Zen Mode
   {
     "command": "workbench.action.toggleZenMode",
     "key": "ctrl+z"
@@ -61,73 +50,60 @@
     "command": "-workbench.action.toggleZenMode",
     "key": "ctrl+k z"
   },
-  // select all content from the editor.
-  {
-    "command": "editor.action.selectAll",
-    "key": "ctrl+a"
-  },
-  // navigation in the quick file picker. Ctrl + j (bottom) and Ctrl + k (top)
-  {
-    "key": "ctrl+k",
+    {
+    "key": "ctrl+p",
     "command": "workbench.action.quickOpenNavigatePreviousInFilePicker"
   },
   {
-    "key": "ctrl+j",
+    "key": "ctrl+n",
     "command": "workbench.action.quickOpenNavigateNextInFilePicker"
   },
   // select the following suggestion
   {
-    "key": "tab",
+    "key": "ctrl+n",
     "command": "selectNextSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
   // select the previous suggestion from the list
   {
-    "key": "shift+tab",
+    "key": "ctrl+p",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
-
   // Terminal options
   // switch to the next active terminal.
   {
-    "key": "shift+a",
+    "key": "ctrl+right",
     "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
   },
   // switch to the next previous terminal
   {
-    "key": "shift+b",
+    "key": "ctrl+left",
     "command": "workbench.action.terminal.focusPrevious",
     "when": "terminalFocus"
   },
   // toggle activity pane visibility
   {
-    "key": "shift+j",
+    "key": "ctrl+space",
     "command": "workbench.action.togglePanel"
   },
   // open a new terminal
   {
-    "key": "shift+n",
+    "key": "ctrl+t",
     "command": "workbench.action.terminal.new",
     "when": "terminalFocus"
   },
   // close the current terminal
   {
-    "key": "shift+c",
+    "key": "ctrl+w",
     "command": "workbench.action.terminal.kill",
     "when": "terminalFocus"
   },
-  // maximize current editor
   {
-    "key": "ctrl+enter",
-    "command": "workbench.action.toggleEditorWidths",
-    "when": "editorTextFocus && ((vim.active && vim.mode != 'Insert') || neovim.mode != insert)"
-  },
-  // equalize windows
-  {
-    "key": "ctrl+alt+e",
-    "command": "workbench.action.evenEditorWidths"
+    "key": "ctrl+o",
+    "command": "-workbench.action.files.openFile",
+    "when": "true"
   },
   {
     "key": "ctrl+o",
@@ -135,13 +111,26 @@
     "when": "!openFolderWorkspaceSupport && workbenchState == 'workspace'"
   },
   {
-    "key": "ctrl+o ctrl+f",
-    "command": "workbench.action.files.openFolder",
-    "when": "openFolderWorkspaceSupport"
+    "key": "ctrl+o",
+    "command": "-workbench.action.files.openFileFolder",
+    "when": "isMacNative && openFolderWorkspaceSupport"
   },
   {
-    "key": "ctrl+k ctrl+o",
-    "command": "-workbench.action.files.openFolder",
-    "when": "openFolderWorkspaceSupport"
-  }
+    "key": "ctrl+f",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "acceptSelectedSuggestion",
+    "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "tab",
+    "command": "-acceptSelectedSuggestion",
+    "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+  },
 ]
